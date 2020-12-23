@@ -1,5 +1,5 @@
 # NEDC 2020/2021
-Participants:
+Participants: <br />
 Johann Nebe <br />
 Kulani Temesgen <br />
-Nolan Poe <br />
+Nolan Poe
