@@ -5,5 +5,4 @@ void setup() {
 }
 
 void loop() {
-  return 0;
 }
