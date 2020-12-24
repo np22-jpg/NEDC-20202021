@@ -10,5 +10,10 @@
 			"path": "NEDC 2020.2021 HW"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.tabSize": 2
+	},
+	"extensions": {
+		"recommendations": ["ms-vscode.cpptools", "austin.code-gnu-global", "platformio.platformio-ide", "eighthundreds.vscode-drawio"]
+	}
 }
