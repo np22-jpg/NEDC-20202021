@@ -3,7 +3,7 @@ Participants: <br />
 Johann Nebe <br />
 Kulani Temesgen <br />
 Nolan Poe <br />
- <br />
+REMINDER: DO NOT COPY/PASTE ANYTHING <br />
 Project Report: <br />
 https://docs.google.com/document/d/1x0-zXaxtrVHnd9TxlKzaknntUBqE2CPHv0DHHaa4g-4/edit  <br />
 NP's Page: <br />
