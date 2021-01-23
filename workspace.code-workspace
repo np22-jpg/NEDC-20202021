@@ -14,7 +14,8 @@
 		}
 	],
 	"settings": {
-		"editor.tabSize": 2
+		"editor.tabSize": 2,
+		"C_Cpp.intelliSenseEngine": "Tag Parser" //this is a workaround in order to ensure intelliSense does not freak out when using the Arduino framework
 	},
 	"extensions": {
 		"recommendations": ["ms-vscode.cpptools", "austin.code-gnu-global", "vsciot-vscode.vscode-arduino", "eighthundreds.vscode-drawio"]
