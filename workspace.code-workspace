@@ -14,6 +14,6 @@
 		"editor.tabSize": 2
 	},
 	"extensions": {
-		"recommendations": ["ms-vscode.cpptools", "austin.code-gnu-global", "platformio.platformio-ide", "eighthundreds.vscode-drawio"]
+		"recommendations": ["ms-vscode.cpptools", "austin.code-gnu-global", "vsciot-vscode.vscode-arduino", "eighthundreds.vscode-drawio"]
 	}
 }
