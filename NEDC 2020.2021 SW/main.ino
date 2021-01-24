@@ -1,4 +1,4 @@
-#include "pins.h"
+#include "lib/LiquidCrystal.h"
 
 void setup() {
 }
