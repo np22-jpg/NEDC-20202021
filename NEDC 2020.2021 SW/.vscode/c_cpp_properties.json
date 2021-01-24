@@ -3,9 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "${default}",
-                "C:/tempDownloads/arduino-nightly-windows/arduino-nightly/hardware/arduino/avr/cores/arduino",
-                "C:/tempDownloads/arduino-nightly-windows/arduino-nightly/hardware/tools/avr/avr/include"
+                "${default}"
             ],
             "defines": [
                 "_DEBUG",
