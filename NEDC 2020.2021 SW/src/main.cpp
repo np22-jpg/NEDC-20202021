@@ -1,5 +1,4 @@
 #include <LiquidCrystal.h>
-#include <Wire.h>
 LiquidCrystal lcd(0, 1, 2, 3, 4, 5);
 
 float fromLow = 652;
