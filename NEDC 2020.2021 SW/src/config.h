@@ -4,8 +4,8 @@ This file aims to simplify the process of setting pins by exposing an easily und
 
 //LCD Config
 //protip: It's a really bad idea to use pins 0 and 1 when using Serial
-#define lcdReset 2
-#define lcdEnable 3
+#define lcdReset 8
+#define lcdEnable 9
 #define lcdDS4 4
 #define lcdDS5 5
 #define lcdDS6 6

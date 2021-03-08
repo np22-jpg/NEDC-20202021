@@ -18,12 +18,13 @@ int brightnessSensor;
 int brightnessReading;
 
 void setup() {
+//  Serial.begin(9600); //Only enable for logging purposes
+//This point downward sets the UI for the LCD
   lcd.begin(20,4);
   lcd.begin(lcdColumns,lcdRows);
-  Serial.begin(9600);
   dht.begin();
   lcd.setCursor(0,0);
-  lcd.print("Soil Moisture: ");
+  lcd.print("Soil M: ");
   lcd.setCursor(0,1);
   lcd.print("Soil Type: ");
   lcd.setCursor(0,2);
@@ -36,41 +37,44 @@ void setup() {
 }
 
 void loop() {
+  //DHT22 stuffs
   dht.temperature();
   sensors_event_t event;
   dht.temperature().getEvent(&event);
-  Serial.print(event.temperature);
-  Serial.println("*C");
   lcd.setCursor(6, 2);
   lcd.print(event.temperature);
   dht.humidity().getEvent(&event);
-  Serial.print(event.relative_humidity);
-  Serial.println("%");
   lcd.setCursor(4,3);
   lcd.print(event.relative_humidity);
   sensorVal = analogRead(A0);
   moistureVal = mapf(sensorVal, lowerInitialBound, upperInitialBound, lowerFinalBound, upperFinalbound);
-
+  //Brightness sensor stuffs
   lcd.setCursor(17,2);
   brightnessSensor = analogRead(A5);
   brightnessReading = map(brightnessSensor, 0, 1023, 0, 100);
   lcd.print(brightnessReading);
-
+  //Soil Moisture sensor stuffs (Thanks Kulani!)
   if(moistureVal>3.5) {
-    lcd.setCursor(15,0);
+    lcd.setCursor(8,0);
     lcd.print(moistureVal);
-    lcd.setCursor(14,1);
+    lcd.setCursor(13,0);
     lcd.print("(Good)");
     delay(100);
   }
   else {
-    lcd.setCursor(15,0);
+    lcd.setCursor(8,0);
     lcd.print(moistureVal);
-    lcd.setCursor(14,1);
+    lcd.setCursor(13,0);
     lcd.print("(Dry)");
     delay(100);
   }
-
-//Serial.println(moistureVal);
+/*
+For logging stuffs in le terminal
+Serial.print(event.temperature);
+Serial.println("*C");
+Serial.println(moistureVal);
+Serial.print(event.relative_humidity);
+Serial.println("%");
+*/
 delay(150);
 }
