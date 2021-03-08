@@ -21,12 +21,17 @@ void lcdSleepWake () {
   switch (lcdIndex) {
     case 'A':
     lcdIndex = 'B';
+    lcd.clear(); //prevents (most) gibberish while the relay swaps contacts
     break;
 
     case 'B':
     lcdIndex = 'A';
     break;
   }
+}
+
+void swapSoils () {
+
 }
 
 void lcdRefresh () {
@@ -53,7 +58,7 @@ void setup() {
 //  lcd.print("On");
   //Creating pin interrupts
   attachInterrupt(digitalPinToInterrupt(buttonPin), lcdSleepWake, RISING);
-  delay(50);
+  attachInterrupt(digitalPinToInterrupt(encoderPin), swapSoils, RISING);
   lcd.begin(lcdColumns,lcdRows);
 }
 
@@ -91,6 +96,7 @@ void loop() {
   }
   if (lcdIndex == 'A') {
   digitalWrite(lcdRelayPin, HIGH);
+
   lcdRefresh();
   }
   else {
