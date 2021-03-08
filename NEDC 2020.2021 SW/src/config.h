@@ -13,6 +13,9 @@ This file aims to simplify the process of setting pins by exposing an easily und
 #define lcdColumns 20
 #define lcdRows 4
 
+//DHT Config
+#define DHTPIN 12
+#define DHTTYPE 22
 
 //Soil Moisture Thresholds
 
