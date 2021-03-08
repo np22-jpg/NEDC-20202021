@@ -27,6 +27,7 @@ float lowerFinalBound = 2.6;
 float upperFinalbound = 6.1;
 int sensorVal;
 float moistureVal;
+float moistureThreshold = 3.5;
 
 /*
 float fromLow = 652;
@@ -46,3 +47,4 @@ Get a DHT22 that actually works
 
 //no touchie, will break literally everything
 char lcdIndex = 'A';
+char soilType = 'A';

@@ -21,7 +21,6 @@ void lcdSleepWake () {
   switch (lcdIndex) {
     case 'A':
     lcdIndex = 'B';
-    lcd.clear(); //prevents (most) gibberish while the relay swaps contacts
     break;
 
     case 'B':
@@ -31,7 +30,31 @@ void lcdSleepWake () {
 }
 
 void swapSoils () {
-
+  switch (soilType) {
+    case 'A':
+    soilType = 'B';
+    lowerFinalBound = 2.6;
+    upperFinalbound = 6.1;
+    moistureThreshold = 3.5;
+    lcd.setCursor(11,1);
+    lcd.print("Clay ");
+    return;
+    case 'B':
+    soilType = 'C';
+    lowerFinalBound = 2.6;
+    upperFinalbound = 6.1;
+    moistureThreshold = 1.6;
+    lcd.setCursor(11,1);
+    lcd.print("Sandy");
+    return;
+    case 'C':
+    soilType = 'A';
+    lowerFinalBound = 1.8;
+    upperFinalbound = 5.8;
+    moistureThreshold = 2.8;
+    lcd.setCursor(11,1);
+    lcd.print("Loam ");
+  }
 }
 
 void lcdRefresh () {
@@ -54,6 +77,8 @@ void setup() {
 //This point downward sets the UI for the LCD
   dht.begin();
   lcdRefresh();
+  lcd.setCursor(11,1);
+  lcd.print("Clay"); //It's too late for me to figure out a way to shove this into lcdRefresh
 //  lcd.setCursor(14, 3); Theres no reason to set this as the LCD will be off
 //  lcd.print("On");
   //Creating pin interrupts
@@ -80,7 +105,7 @@ void loop() {
   brightnessReading = map(brightnessSensor, 0, 1023, 0, 100);
   lcd.print(brightnessReading);
   //Soil Moisture sensor stuffs (Thanks Kulani!)
-  if(moistureVal>3.5) {
+  if(moistureVal>moistureThreshold) {
     lcd.setCursor(8,0);
     lcd.print(moistureVal);
     lcd.setCursor(13,0);
@@ -96,11 +121,12 @@ void loop() {
   }
   if (lcdIndex == 'A') {
   digitalWrite(lcdRelayPin, HIGH);
-
+  delay(200);
   lcdRefresh();
   }
   else {
     digitalWrite(lcdRelayPin, LOW);
+    lcd.clear();
   }
 
 
