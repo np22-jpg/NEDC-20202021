@@ -15,19 +15,23 @@ This file aims to simplify the process of setting pins by exposing an easily und
 
 
 //Soil Moisture Thresholds
+
+float lowerInitialBound = 652; //kind of a weird oxymoron but ima ignore that
+float upperInitialBound = 336; //I can't come up with better naming pls help
+float lowerFinalBound = 2.6;
+float upperFinalbound = 6.1;
+int sensorVal;
+float moistureVal;
+
 /*
-float lowerInitialBound 652; //kind of a weird oxymoron but ima ignore that
-float upperInitialBound 336;
-float lowerFinalBound 2.6;
-float upperFinalbound 6.1;
-*/
 float fromLow = 652;
 float fromHigh = 336;
 float toLow = 2.6;
 float toHigh = 6.1;
 float sensorVal;
 float moistureVal;
-
+keeping this here since idk if the stuff I referenced/created actually works or not
+*/
 
 /*
 TODO:
