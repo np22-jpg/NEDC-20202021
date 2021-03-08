@@ -17,7 +17,20 @@ float mapf(float x, float in_min, float in_max, float out_min, float out_max)
 int brightnessSensor;
 int brightnessReading;
 
+void lcdSleepWake () {
+  switch (lcdIndex) {
+    case 'A':
+    lcdIndex = 'B';
+    break;
+
+    case 'B':
+    lcdIndex = 'A';
+    break;
+  }
+}
+
 void setup() {
+  pinMode (lcdRelayPin, OUTPUT);
 //  Serial.begin(9600); //Only enable for logging purposes
 //This point downward sets the UI for the LCD
   lcd.begin(20,4);
@@ -33,7 +46,10 @@ void setup() {
   lcd.print("Sun: ");
   lcd.setCursor(0,3);
   lcd.print("RH: ");
-
+//  lcd.setCursor(14, 3); Theres no reason to set this as the LCD will be off
+//  lcd.print("On");
+  //Creating pin interrupts
+  attachInterrupt(digitalPinToInterrupt(buttonPin), lcdSleepWake, RISING);
 }
 
 void loop() {
@@ -65,11 +81,20 @@ void loop() {
     lcd.setCursor(8,0);
     lcd.print(moistureVal);
     lcd.setCursor(13,0);
-    lcd.print("(Dry)");
+    lcd.print("(Dry)  ");
     delay(100);
   }
+  if (lcdIndex == 'A') {
+    digitalWrite(lcdRelayPin, HIGH);
+  }
+  else {
+    digitalWrite(lcdRelayPin, LOW);
+  }
+
+
 /*
-For logging stuffs in le terminal
+//For logging stuffs in le terminal
+Serial.print(lcdIndex);
 Serial.print(event.temperature);
 Serial.println("*C");
 Serial.println(moistureVal);
