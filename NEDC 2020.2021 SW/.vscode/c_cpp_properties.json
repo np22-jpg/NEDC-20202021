@@ -8,30 +8,34 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "D:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/include",
-                "D:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/src",
+                "d:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/include",
+                "d:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/src",
+                "d:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/.pio/libdeps/uno/LiquidCrystal",
+                "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 "C:/Users/allofus/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/allofus/.platformio/packages/framework-arduino-avr/variants/standard",
+                "d:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/.pio/libdeps/uno/LiquidCrystal@1.0.7/src",
                 "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                 "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 "C:/Users/allofus/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "D:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/include",
-                    "D:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/src",
+                    "d:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/include",
+                    "d:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/src",
+                    "d:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/.pio/libdeps/uno/LiquidCrystal",
+                    "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     "C:/Users/allofus/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "C:/Users/allofus/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "d:/VSCode/NEDC-20202021/NEDC 2020.2021 SW/.pio/libdeps/uno/LiquidCrystal@1.0.7/src",
                     "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                     "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                    "C:/Users/allofus/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     "C:/Users/allofus/.platformio/packages/tool-unity",
                     ""
                 ]

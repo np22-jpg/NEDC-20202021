@@ -1,23 +1,26 @@
 /*
 This file aims to simplify the process of setting pins by exposing an easily understandable config
-/
+*/
 
 //LCD Config
-#define lcdReset 0
-#define lcdEnable 1
-#define lcdDS4 2
-#define lcdDS5 3
-#define lcdDS6 4
-#define lcdDS7 5
+//protip: It's a really bad idea to use pins 0 and 1 when using Serial
+#define lcdReset 2
+#define lcdEnable 3
+#define lcdDS4 4
+#define lcdDS5 5
+#define lcdDS6 6
+#define lcdDS7 7
 #define lcdColumns 20
 #define lcdRows 4
 
+
 //Soil Moisture Thresholds
+/*
 float lowerInitialBound 652; //kind of a weird oxymoron but ima ignore that
 float upperInitialBound 336;
 float lowerFinalBound 2.6;
 float upperFinalbound 6.1;
-
+*/
 float fromLow = 652;
 float fromHigh = 336;
 float toLow = 2.6;
