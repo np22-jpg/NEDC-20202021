@@ -29,13 +29,7 @@ void lcdSleepWake () {
   }
 }
 
-void setup() {
-  pinMode (lcdRelayPin, OUTPUT);
-//  Serial.begin(9600); //Only enable for logging purposes
-//This point downward sets the UI for the LCD
-  lcd.begin(20,4);
-  lcd.begin(lcdColumns,lcdRows);
-  dht.begin();
+void lcdRefresh () {
   lcd.setCursor(0,0);
   lcd.print("Soil M: ");
   lcd.setCursor(0,1);
@@ -46,10 +40,21 @@ void setup() {
   lcd.print("Sun: ");
   lcd.setCursor(0,3);
   lcd.print("RH: ");
+}
+
+void setup() {
+  pinMode (lcdRelayPin, OUTPUT);
+  digitalWrite(lcdRelayPin, HIGH);
+//  Serial.begin(9600); //Only enable for logging purposes
+//This point downward sets the UI for the LCD
+  dht.begin();
+  lcdRefresh();
 //  lcd.setCursor(14, 3); Theres no reason to set this as the LCD will be off
 //  lcd.print("On");
   //Creating pin interrupts
   attachInterrupt(digitalPinToInterrupt(buttonPin), lcdSleepWake, RISING);
+  delay(50);
+  lcd.begin(lcdColumns,lcdRows);
 }
 
 void loop() {
@@ -85,7 +90,8 @@ void loop() {
     delay(100);
   }
   if (lcdIndex == 'A') {
-    digitalWrite(lcdRelayPin, HIGH);
+  digitalWrite(lcdRelayPin, HIGH);
+  lcdRefresh();
   }
   else {
     digitalWrite(lcdRelayPin, LOW);
