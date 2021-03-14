@@ -4,6 +4,8 @@
 #include <DHT.h>
 #include <DHT_U.h>
 
+int brightnessSensor;
+int brightnessReading;
 
 LiquidCrystal lcd(lcdReset, lcdEnable, lcdDS4, lcdDS5, lcdDS6, lcdDS7);
 DHT_Unified dht(DHTPIN, DHTTYPE);
@@ -14,15 +16,12 @@ float mapf(float x, float in_min, float in_max, float out_min, float out_max)
 }
 //got this one off the forums 
 
-int brightnessSensor;
-int brightnessReading;
 
 void lcdSleepWake () {
   switch (lcdIndex) {
     case 'A':
     lcdIndex = 'B';
     break;
-
     case 'B':
     lcdIndex = 'A';
     break;
@@ -54,6 +53,7 @@ void swapSoils () {
     moistureThreshold = 2.8;
     lcd.setCursor(11,1);
     lcd.print("Loam ");
+    return
   }
 }
 
