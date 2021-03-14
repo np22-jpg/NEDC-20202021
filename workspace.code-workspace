@@ -11,12 +11,8 @@
 		},
 		{
 			"path": "Docs"
-		},
-		{
-			"name": "NEDC",
-			"path": "C:\\Users\\allofus\\Documents\\PlatformIO\\Projects\\NEDC"
 		}
-	],
+
 	"settings": {
 		"editor.tabSize": 2,
 		"C_Cpp.intelliSenseEngine": "Tag Parser" //this is a workaround in order to ensure intelliSense does not freak out when using the Arduino framework

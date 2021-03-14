@@ -10,84 +10,67 @@ int brightnessReading;
 LiquidCrystal lcd(lcdReset, lcdEnable, lcdDS4, lcdDS5, lcdDS6, lcdDS7);
 DHT_Unified dht(DHTPIN, DHTTYPE);
 
+//got this one off the forums
 float mapf(float x, float in_min, float in_max, float out_min, float out_max)
 {
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
-//got this one off the forums 
-
-
-void lcdSleepWake () {
-  switch (lcdIndex) {
-    case 'A':
-    lcdIndex = 'B';
-    break;
-    case 'B':
-    lcdIndex = 'A';
-    break;
-  }
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-void swapSoils () {
-  switch (soilType) {
-    case 'A':
-    soilType = 'B';
-    lowerFinalBound = 2.6;
-    upperFinalbound = 6.1;
-    moistureThreshold = 3.5;
-    lcd.setCursor(11,1);
-    lcd.print("Clay ");
-    return;
-    case 'B':
-    soilType = 'C';
-    lowerFinalBound = 2.6;
-    upperFinalbound = 6.1;
-    moistureThreshold = 1.6;
-    lcd.setCursor(11,1);
-    lcd.print("Sandy");
-    return;
-    case 'C':
-    soilType = 'A';
-    lowerFinalBound = 1.8;
-    upperFinalbound = 5.8;
-    moistureThreshold = 2.8;
-    lcd.setCursor(11,1);
-    lcd.print("Loam ");
-    return
-  }
-}
+class backlitLCD
+{
+  static const int amountOfScreens = 8; //amount of screens from 0 to n
+  int initialScreen = 0;
+  String screens[amountOfScreens] = {
+      "mainScreen",
+      "screenSelect",
+      "claySoil",
+      "loamySoil",
+      "sandySoil",
+      "soilSetup",
+      "customSoil1",
+      "otherData"
+      };
 
-void lcdRefresh () {
-  lcd.setCursor(0,0);
-  lcd.print("Soil M: ");
-  lcd.setCursor(0,1);
-  lcd.print("Soil Type: ");
-  lcd.setCursor(0,2);
-  lcd.print("Temp: ");
-  lcd.setCursor(12, 2);
-  lcd.print("Sun: ");
-  lcd.setCursor(0,3);
-  lcd.print("RH: ");
-}
+public:
+  void updateMenu()
+  {
+  };
 
-void setup() {
-  pinMode (lcdRelayPin, OUTPUT);
+private:
+  void lcdMain()
+  {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Soil M: ");
+    lcd.setCursor(0, 1);
+    lcd.print("Soil Type: ");
+    lcd.setCursor(0, 2);
+    lcd.print("Temp: ");
+    lcd.setCursor(12, 2);
+    lcd.print("Sun: ");
+    lcd.setCursor(0, 3);
+    lcd.print("RH: ");
+  };
+};
+
+void
+setup()
+{
+  pinMode(lcdRelayPin, OUTPUT);
   digitalWrite(lcdRelayPin, HIGH);
-//  Serial.begin(9600); //Only enable for logging purposes
-//This point downward sets the UI for the LCD
+  //Serial.begin(9600); //Only enable for logging purposes
   dht.begin();
-  lcdRefresh();
-  lcd.setCursor(11,1);
-  lcd.print("Clay"); //It's too late for me to figure out a way to shove this into lcdRefresh
-//  lcd.setCursor(14, 3); Theres no reason to set this as the LCD will be off
-//  lcd.print("On");
+  lcd.begin(lcdColumns, lcdRows);
   //Creating pin interrupts
-  attachInterrupt(digitalPinToInterrupt(buttonPin), lcdSleepWake, RISING);
-  attachInterrupt(digitalPinToInterrupt(encoderPin), swapSoils, RISING);
-  lcd.begin(lcdColumns,lcdRows);
+  // attachInterrupt(digitalPinToInterrupt(buttonPin), lcdSleepWake, RISING); //come back to this later
+  // attachInterrupt(digitalPinToInterrupt(encoderPin), updateMenu, RISING);  //come back to this later
 }
 
-void loop() {
+void loop()
+{
+  backlitLCD mainLCD;
+
+  
   //DHT22 stuffs
   dht.temperature();
   sensors_event_t event;
@@ -95,42 +78,34 @@ void loop() {
   lcd.setCursor(6, 2);
   lcd.print(event.temperature);
   dht.humidity().getEvent(&event);
-  lcd.setCursor(4,3);
+  lcd.setCursor(4, 3);
   lcd.print(event.relative_humidity);
   sensorVal = analogRead(A0);
   moistureVal = mapf(sensorVal, lowerInitialBound, upperInitialBound, lowerFinalBound, upperFinalbound);
   //Brightness sensor stuffs
-  lcd.setCursor(17,2);
+  lcd.setCursor(17, 2);
   brightnessSensor = analogRead(A5);
   brightnessReading = map(brightnessSensor, 0, 1023, 0, 100);
   lcd.print(brightnessReading);
   //Soil Moisture sensor stuffs (Thanks Kulani!)
-  if(moistureVal>moistureThreshold) {
-    lcd.setCursor(8,0);
+  if (moistureVal > moistureThreshold)
+  {
+    lcd.setCursor(8, 0);
     lcd.print(moistureVal);
-    lcd.setCursor(13,0);
+    lcd.setCursor(13, 0);
     lcd.print("(Good)");
     delay(100);
   }
-  else {
-    lcd.setCursor(8,0);
+  else
+  {
+    lcd.setCursor(8, 0);
     lcd.print(moistureVal);
-    lcd.setCursor(13,0);
+    lcd.setCursor(13, 0);
     lcd.print("(Dry)  ");
     delay(100);
   }
-  if (lcdIndex == 'A') {
-  digitalWrite(lcdRelayPin, HIGH);
-  delay(200);
-  lcdRefresh();
-  }
-  else {
-    digitalWrite(lcdRelayPin, LOW);
-    lcd.clear();
-  }
 
-
-/*
+  /*
 //For logging stuffs in le terminal
 Serial.print(lcdIndex);
 Serial.print(event.temperature);
@@ -139,5 +114,5 @@ Serial.println(moistureVal);
 Serial.print(event.relative_humidity);
 Serial.println("%");
 */
-delay(150);
+  delay(150);
 }

@@ -12,9 +12,10 @@ This file aims to simplify the process of setting pins by exposing an easily und
 #define lcdDS7 7
 #define lcdColumns 20
 #define lcdRows 4
-#define buttonPin 2
 #define lcdRelayPin 11
 #define encoderPin 3
+#define buttonPin 2
+#define debDelay 5
 
 //DHT Config
 #define DHTPIN 12
@@ -28,23 +29,3 @@ float upperFinalbound = 6.1;
 int sensorVal;
 float moistureVal;
 float moistureThreshold = 3.5;
-
-/*
-float fromLow = 652;
-float fromHigh = 336;
-float toLow = 2.6;
-float toHigh = 6.1;
-float sensorVal;
-float moistureVal;
-keeping this here since idk if the stuff I referenced/created actually works or not
-*/
-
-/*
-TODO:
-Move soil moisture thresholds to a menu that is configurable on the arduino
-Get a DHT22 that actually works
-*/
-
-//no touchie, will break literally everything
-char lcdIndex = 'A';
-char soilType = 'A';
